@@ -29,13 +29,3 @@ Optional private key. In this case it will ignore the password if provided.
     src: ./**
     dist: /usr/local/release
 ```
-
-## Changelog
-
-v2
-- 'username' and 'password' arguments renamed to 'user' and 'pass'
-- accepts optional 'port' argument for the ssh port
-- accepts optional 'key' argument for the private key
-
-v1
-- initial version
