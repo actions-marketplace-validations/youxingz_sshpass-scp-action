@@ -1,4 +1,4 @@
-name: SSHPASS Github Action
+name: SSHPASS SCP Github Action
 inputs:
   host:
     description: "SSHPASS host"
@@ -16,8 +16,14 @@ inputs:
   key:
     description: "SSHPASS private key"
     required: false
-  run:
-    description: "SSHPASS commands to run"
+#   run:
+#     description: "SSHPASS commands to run"
+#     required: true
+  src:
+    description: "Source Files"
+    required: true
+  dist:
+    description: "Remote target directory"
     required: true
 
 description: 'SSHPASS Github Action'
@@ -34,4 +40,6 @@ runs:
     USER: ${{ inputs.user }}
     PASS: ${{ inputs.pass }}
     KEY: ${{ inputs.key }}
-    RUN: ${{ inputs.run }}
+#     RUN: ${{ inputs.run }}
+    SRC: ${{ inputs.src }}
+    DIST: ${{ inputs.dist }}
