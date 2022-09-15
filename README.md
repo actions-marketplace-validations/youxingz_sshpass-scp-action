@@ -1,54 +1,33 @@
-# SSHPASS Github Action
+# SSHPASS SCP Github Action
 
-Github Action to send commands via SSHPASS
+Github Action to send commands via SSHPASS-SCP
 
 
 ## Usage
 
-Example usage can be found at [sshpass-action-example](https://github.com/matheusvanzan/sshpass-action-example)
-
 ```
-- name: Run sshpass commands
-  uses: matheusvanzan/sshpass-action@v2
+- name: Run sshpass-scp commands
+  uses: youxingz/sshpass-scp-action@v3
   with:
     host: ${{ secrets.SERVER_HOST }}
     user: ${{ secrets.SERVER_USER }}
     pass: ${{ secrets.SERVER_PASS }}
-    run: |
-      # your 
-      # commands
-      # here
-```
-
-Optional ssh port
-
-```
-- name: Run sshpass commands
-  uses: matheusvanzan/sshpass-action@v2
-  with:
-    host: ${{ secrets.SERVER_HOST }}
     port: 22
-    user: ${{ secrets.SERVER_USER }}
-    pass: ${{ secrets.SERVER_PASS }}
-    run: |
-      # your 
-      # commands
-      # here
+    src: ./**
+    dist: /usr/local/release
 ```
 
 Optional private key. In this case it will ignore the password if provided.
 
 ```
-- name: Run sshpass commands
-  uses: matheusvanzan/sshpass-action@v2
+- name: Run sshpass-scp commands
+  uses: youxingz/sshpass-scp-action@v3
   with:
     host: ${{ secrets.SERVER_HOST }}
     user: ${{ secrets.SERVER_USER }}
     key: ${{ secrets.SERVER_KEY }}
-    run: |
-      # your 
-      # commands
-      # here
+    src: ./**
+    dist: /usr/local/release
 ```
 
 ## Changelog
