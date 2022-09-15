@@ -11,6 +11,8 @@ echo "Starting ${GITHUB_WORKFLOW}:${GITHUB_ACTION}"
 # echo "INPUT_PASS: ${INPUT_PASS}"
 # echo "INPUT_KEY: ${INPUT_KEY}"
 # echo "INPUT_RUN: ${INPUT_RUN}"
+# echo "INPUT_SRC: ${INPUT_SRC}"
+# echo "INPUT_DIST: ${INPUT_DIST}"
 
 CMD="${INPUT_RUN/$'\n'/' && '}"
 
@@ -18,7 +20,7 @@ if [ -z "$INPUT_KEY" ] # Password
 then
     echo "Using password"
     export SSHPASS=$PASS
-    sshpass -e ssh -o StrictHostKeyChecking=no -p $INPUT_PORT $INPUT_USER@$INPUT_HOST "$CMD"
+    sshpass -e scp $INPUT_SRC -o StrictHostKeyChecking=no -p $INPUT_PORT $INPUT_USER@$INPUT_HOST:$INPUT_DIST
 
 else # Private key
     echo "Using private key"
@@ -35,7 +37,9 @@ else # Private key
     cat "/root/.ssh/config"
 
     ls -lha "/root/.ssh/"
-    sshpass ssh -v -o StrictHostKeyChecking=no -p $INPUT_PORT $INPUT_USER@$INPUT_HOST "$CMD"
+    # sshpass ssh -v -o StrictHostKeyChecking=no -p $INPUT_PORT $INPUT_USER@$INPUT_HOST "$CMD"
+    sshpass scp $INPUT_SRC -o StrictHostKeyChecking=no -p $INPUT_PORT $INPUT_USER@$INPUT_HOST:$INPUT_DIST
+
 fi
 
 echo "#################################################"
