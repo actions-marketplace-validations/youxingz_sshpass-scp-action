@@ -20,7 +20,7 @@ if [ -z "$INPUT_KEY" ] # Password
 then
     echo "Using password"
     export SSHPASS=$PASS
-    sshpass -e scp $INPUT_SRC -o StrictHostKeyChecking=no -p $INPUT_PORT $INPUT_USER@$INPUT_HOST:$INPUT_DIST
+    sshpass -e scp -r -o StrictHostKeyChecking=no -p$INPUT_PORT $INPUT_SRC $INPUT_USER@$INPUT_HOST:$INPUT_DIST
 
 else # Private key
     echo "Using private key"
